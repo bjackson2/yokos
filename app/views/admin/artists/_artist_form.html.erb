@@ -1,0 +1,33 @@
+<div class="my-12" x-data="{ showPreview: false, logoPreviewSrc: '#' }">
+  <%= form_for [:admin, artist] do |form| %>
+    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/text_field", field: :name, form: form, label: "Artist name" %>
+      </div>
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/text_field", field: :file_under, form: form, label: "File under" %>
+      </div>
+      <div class="col-span-full">
+        <%= form.label :main_image, "Main image", class: "form-label" %>
+        <div class="my-4">
+          <% if artist.main_image.attached? %>
+            <%= image_tag artist.main_image, width: "150px" %>
+          <% end %>
+          <img width="150px" x-show="showPreview" x-bind:src="logoPreviewSrc" />
+        </div>
+
+        <div class="mt-2">
+          <%= form.file_field :main_image, class: "form-file-input", accept: 'image/png, image/jpeg', "x-on:change" => "showPreview = true; logoPreviewSrc = URL.createObjectURL($event.target.files[0]);" %>
+        </div>
+      </div>
+      <div class="col-span-full">
+        <%= link_to admin_artists_path do %>
+          <%= button_tag "Cancel", class: "btn-secondary" %>
+        <% end %>
+      </div>
+      <div class="col-span-full">
+        <%= button_tag "Save", class: "btn-primary", type: "submit" %>
+      </div>
+    </div>
+  <% end %>
+</div>

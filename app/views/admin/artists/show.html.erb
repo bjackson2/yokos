@@ -1,0 +1,26 @@
+<h1>Artist</h1>
+
+<div class="mt-6">
+  <dl class="divide-y divide-gray-100">
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="font-medium leading-6 text-gray-900">Name</dt>
+      <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @artist.name %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="font-medium leading-6 text-gray-900">File under</dt>
+      <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @artist.file_under %></dd>
+    </div>
+    <% if @artist.main_image.attached? %>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="font-medium leading-6 text-gray-900">Main image</dt>
+        <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= image_tag @artist.main_image, width: "150px" %></dd>
+      </div>
+    <% end %>
+  </dl>
+</div>
+
+<div class="my-6">
+  <%= link_to edit_admin_artist_path(@artist) do %>
+    <%= button_tag "Edit", class: "btn-secondary" %>
+  <% end %>
+</div>
