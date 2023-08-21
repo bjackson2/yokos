@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :artists
 
   namespace :admin do
-    resources :artists
+    resources :artists do
+      resources :albums
+    end
   end
 end
