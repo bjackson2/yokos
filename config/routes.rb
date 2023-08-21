@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :artists do
       resources :albums
     end
+    resources :listening_sessions
   end
 end

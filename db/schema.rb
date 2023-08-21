@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_172131) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_21_192950) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_172131) do
   end
 
   create_table "listening_sessions", force: :cascade do |t|
-    t.date "date", null: false
+    t.date "date"
     t.string "session_type", null: false
     t.string "theme"
     t.text "notes"

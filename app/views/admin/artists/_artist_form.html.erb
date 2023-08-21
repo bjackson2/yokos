@@ -20,11 +20,13 @@
           <%= form.file_field :main_image, class: "form-file-input", accept: 'image/png, image/jpeg', "x-on:change" => "showPreview = true; logoPreviewSrc = URL.createObjectURL($event.target.files[0]);" %>
         </div>
       </div>
-      <div class="col-span-full">
-        <%= link_to admin_artist_albums_path(artist_id: artist) do %>
-          <%= button_tag "Edit Albums", class: "btn-secondary" %>
-        <% end %>
-      </div>
+      <% if artist.persisted? %>
+        <div class="col-span-full">
+          <%= link_to admin_artist_albums_path(artist_id: artist) do %>
+            <%= button_tag "Edit Albums", class: "btn-secondary" %>
+          <% end %>
+        </div>
+      <% end %>
       <div class="col-span-full flex">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
         <div class="ml-8">
