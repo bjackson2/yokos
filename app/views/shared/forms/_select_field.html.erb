@@ -1,0 +1,8 @@
+<%-
+  options ||= {}
+  options[:autocomplete] ||= "off"
+%>
+<%= form.label field, label, class: "form-label" %>
+<div class="mt-2">
+  <%= form.select field, select_options, {}, { class: "form-input" }.merge(options) %>
+</div>

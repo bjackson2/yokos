@@ -8,7 +8,8 @@
         <%= render "shared/forms/text_field", field: :file_under, form: form, label: "File under" %>
       </div>
       <div class="sm:col-span-4">
-        <%= form.date_field :release_date %>
+        <%= form.label :release_date, "Release date", class: "form-label" %>
+        <%= form.date_field :release_date, class: "form-input" %>
       </div>
       <div class="col-span-full">
         <%= form.label :main_image, "Main image", class: "form-label" %>

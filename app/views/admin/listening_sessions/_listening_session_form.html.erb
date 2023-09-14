@@ -1,0 +1,27 @@
+<div class="my-12">
+  <%= form_for [:admin, listening_session] do |form| %>
+    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-4">
+        <%= form.label :date, "Date", class: "form-label" %>
+        <%= form.date_field :date, class: "form-input" %>
+      </div>
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/select_field", form: form, field: :session_type, label: "Session type", select_options: session_type_select_options %>
+      </div>
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/text_field", form: form, field: :theme, label: "Theme" %>
+      </div>
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/text_area", form: form, field: :notes, label: "Notes" %>
+      </div>
+      <div class="col-span-full flex">
+        <%= button_tag "Save", class: "btn-primary", type: "submit" %>
+        <div class="ml-8">
+          <%= link_to admin_listening_sessions_path do %>
+            <%= button_tag "Cancel", class: "btn-secondary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
