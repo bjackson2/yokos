@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "admin#index"
+  root "home#index"
 
   resources :artists
 
