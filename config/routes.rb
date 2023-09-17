@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :artists do
       resources :albums
     end
-    resources :listening_sessions
+    resources :listening_sessions do
+      resources :listening_session_images, only: :destroy
+    end
   end
 end

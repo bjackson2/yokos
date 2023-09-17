@@ -39,7 +39,7 @@ module Admin
 
     def listening_session_params
       params.require(:listening_session).permit(
-        :date, :session_type, :theme, :notes
+        :date, :session_type, :theme, :notes, images: []
       )
     end
   end

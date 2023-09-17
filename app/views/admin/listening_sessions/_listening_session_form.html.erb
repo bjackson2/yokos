@@ -14,6 +14,22 @@
       <div class="sm:col-span-4">
         <%= render "shared/forms/text_area", form: form, field: :notes, label: "Notes" %>
       </div>
+      <div class="col-span-full">
+        <%= form.label :images, "Images", class: "form-label" %>
+        <%= form.file_field :images, class: "form-file-input", accept: 'image/png, image/jpeg', multiple: true %>
+      </div>
+      <% if listening_session.images.attached? %>
+        <div class="col-span-full flex">
+          <% listening_session.images.each do |image| %>
+            <div class="p-5 mx-2 border border-solid border-gray-800">
+              <%= image_tag image, width: "200px", height: "200px" %>
+              <%= link_to admin_listening_session_listening_session_image_path(image, listening_session_id: listening_session), data: { "turbo-method": :delete } do %>
+                <%= button_tag 'Delete', class: 'btn-alert my-2' %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       <div class="col-span-full flex">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
         <div class="ml-8">
