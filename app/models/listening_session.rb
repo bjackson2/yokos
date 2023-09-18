@@ -1,5 +1,5 @@
 class ListeningSession < ApplicationRecord
-  enum session_type: { remote: 'remote', party: 'party', maestros_basement: 'maestros_basement' }
+  enum session_type: { remote: 'remote', party: 'party', maestros_basement: 'maestros_basement', movie_night: 'movie_night' }
 
   has_many :listening_session_albums
   has_many :albums, through: :listening_session_albums
