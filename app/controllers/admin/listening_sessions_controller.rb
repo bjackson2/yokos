@@ -13,7 +13,6 @@ module Admin
       @listening_session.save
 
       if @listening_session.errors.any?
-        binding.pry
         render :new
       else
         redirect_to admin_listening_sessions_path

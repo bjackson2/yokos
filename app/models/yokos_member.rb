@@ -6,4 +6,6 @@ class YokosMember < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
+
+  scope :sorted, -> { order(name: :asc) }
 end
