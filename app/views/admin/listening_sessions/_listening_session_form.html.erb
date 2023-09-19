@@ -52,8 +52,10 @@
             <% end %>
           </div>
         <% end %>
-        <%= link_to new_admin_listening_session_listening_session_album_path(listening_session_id: listening_session) do %>
-          <%= button_tag "Add album", class: 'btn-secondary' %>
+        <% if listening_session.persisted? %>
+          <%= link_to new_admin_listening_session_listening_session_album_path(listening_session_id: listening_session) do %>
+            <%= button_tag "Add album", class: 'btn-secondary' %>
+          <% end %>
         <% end %>
       </div>
       <div class="col-span-full flex">

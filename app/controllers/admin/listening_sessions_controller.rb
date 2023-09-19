@@ -15,7 +15,7 @@ module Admin
       if @listening_session.errors.any?
         render :new
       else
-        redirect_to admin_listening_sessions_path
+        redirect_to edit_admin_listening_session_path(@listening_session)
       end
     end
 
