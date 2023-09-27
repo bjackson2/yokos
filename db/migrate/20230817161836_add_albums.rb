@@ -5,7 +5,7 @@ class AddAlbums < ActiveRecord::Migration[7.0]
       t.string :file_under
       t.date :release_date, null: false
 
-      t.belongs_to :artist
+      # t.belongs_to :artist
 
       t.timestamps
     end
