@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class ListeningSessionAlbumsController < AdminController
     skip_before_action :verify_authenticity_token, only: :index
@@ -6,21 +8,23 @@ module Admin
       @listening_session = ListeningSession.find(params[:listening_session_id])
       @albums = Album.search(params[:q])
 
-      respond_to { |format| format.turbo_stream }
+      respond_to(&:turbo_stream)
     end
 
     def new
       @listening_session = ListeningSession.find(params[:listening_session_id])
       @listening_session_album = @listening_session.listening_session_albums.new
 
-      if params[:album_id]
-        @listening_session_album.album = Album.find(params[:album_id])
-      end
+      return unless params[:album_id]
+
+      @listening_session_album.album = Album.find(params[:album_id])
     end
 
     def create
       @listening_session = ListeningSession.find(params[:listening_session_id])
-      @listening_session_album = @listening_session.listening_session_albums.new(listening_session_album_params.except(:album))
+      @listening_session_album = @listening_session
+                                 .listening_session_albums
+                                 .new(listening_session_album_params.except(:album))
       @listening_session_album.save
 
       if @listening_session_album.errors.any?

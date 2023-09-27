@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class YokosMember < ApplicationRecord
   has_many :listening_session_albums
   has_many :picks, through: :listening_session_albums, source: :album

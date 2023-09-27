@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class ArtistsController < AdminController
     def index
@@ -46,7 +48,7 @@ module Admin
       params.require(:artist).permit(
         :name,
         :file_under,
-        :main_image,
+        :main_image
       )
     end
   end

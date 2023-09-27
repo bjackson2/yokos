@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ListeningSessionAlbum < ApplicationRecord
   belongs_to :listening_session
   belongs_to :album
