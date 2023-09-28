@@ -1,0 +1,22 @@
+<% flash.each do |type, message| %>
+  <%
+    color = {}
+
+    case type
+    when 'info', 'notice'
+      color[:text] = 'text-blue-600'
+      color[:background] = 'bg-blue-50'
+    when 'error', 'alert'
+      color[:text] = 'text-red-600'
+      color[:background] = 'bg-red-50'
+    when 'warning'
+      color[:text] = 'text-yellow-600'
+      color[:background] = 'bg-yellow-50'
+    end
+  %>
+  <div class="rounded-md <%= color[:background] %> p-4 my-4">
+    <div class="text-sm <%= color[:text] %>">
+      <p><%= message %></p>
+    </div>
+  </div> 
+<% end %>

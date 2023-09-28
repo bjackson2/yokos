@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_27_141220) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_28_134653) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,9 +43,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_141220) do
     t.string "title", null: false
     t.string "file_under"
     t.date "release_date", null: false
-    t.integer "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "artist_id"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
 
@@ -58,10 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_141220) do
 
   create_table "listening_session_albums", force: :cascade do |t|
     t.integer "listening_session_id", null: false
-    t.integer "album_id", null: false
-    t.integer "yokos_member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "album_id", null: false
+    t.integer "yokos_member_id"
     t.index ["album_id"], name: "index_listening_session_albums_on_album_id"
     t.index ["listening_session_id"], name: "index_listening_session_albums_on_listening_session_id"
     t.index ["yokos_member_id"], name: "index_listening_session_albums_on_yokos_member_id"
@@ -80,6 +80,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_141220) do
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "failed_attempts", default: 0, null: false
+    t.datetime "locked_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "yokos_member_listening_sessions", force: :cascade do |t|
@@ -93,9 +101,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_141220) do
 
   create_table "yokos_members", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_yokos_members_on_user_id"
   end
 
