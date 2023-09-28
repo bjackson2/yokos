@@ -30,34 +30,34 @@
           <% end %>
         </div>
       <% end %>
-      <div class="col-span-full">
-        <%= form.label :albums, "Albums", class: "form-label" %>
-        <% if listening_session.listening_session_albums.any? %>
-          <div class="col-span-full flex my-2">
-            <% listening_session.listening_session_albums.each do |listening_session_album| %>
-              <div class="p-5 mx-2 border border-solid border-gray-800">
-                <% if listening_session_album.album.main_image.attached? %>
-                  <%= image_tag listening_session_album.album.main_image, width: "200px", height: "200px" %>
-                <% end %>
-                <div>
-                  <strong><%= album_display_name(listening_session_album.album) %></strong>
+      <% if listening_session.persisted? %>
+        <div class="col-span-full">
+          <%= form.label :albums, "Albums", class: "form-label" %>
+          <% if listening_session.listening_session_albums.any? %>
+            <div class="col-span-full flex my-2">
+              <% listening_session.listening_session_albums.each do |listening_session_album| %>
+                <div class="p-5 mx-2 border border-solid border-gray-800">
+                  <% if listening_session_album.album.main_image.attached? %>
+                    <%= image_tag listening_session_album.album.main_image, width: "200px", height: "200px" %>
+                  <% end %>
+                  <div>
+                    <strong><%= album_display_name(listening_session_album.album) %></strong>
+                  </div>
+                  <div>
+                    Picker: <%= listening_session_album.yokos_member.name %>
+                  </div>
+                  <%= link_to admin_listening_session_listening_session_album_path(listening_session_album.album, listening_session_id: listening_session), data: { "turbo-method": :delete } do %>
+                    <%= button_tag 'Delete', class: 'btn-alert my-2' %>
+                  <% end %>
                 </div>
-                <div>
-                  Picker: <%= listening_session_album.yokos_member.name %>
-                </div>
-                <%= link_to admin_listening_session_listening_session_album_path(listening_session_album.album, listening_session_id: listening_session), data: { "turbo-method": :delete } do %>
-                  <%= button_tag 'Delete', class: 'btn-alert my-2' %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-        <% if listening_session.persisted? %>
+              <% end %>
+            </div>
+          <% end %>
           <%= link_to new_admin_listening_session_listening_session_album_path(listening_session_id: listening_session) do %>
             <%= button_tag "Add album", class: 'btn-secondary' %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <div class="col-span-full flex">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
         <div class="ml-8">

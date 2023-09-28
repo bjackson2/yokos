@@ -11,6 +11,9 @@
         </div>
       </div>
       <div class="col-span-full">
+        Don't see an album here? Go to <%= link_to "the Artists list", admin_artists_path %> to add a new artist or album.
+      </div>
+      <div class="col-span-full">
         <%= turbo_frame_tag "album-list" %>
       </div>
       <div class="col-span-full">

@@ -17,7 +17,8 @@ module Admin
       if @listening_session.errors.any?
         render :new
       else
-        redirect_to edit_admin_listening_session_path(@listening_session)
+        redirect_to edit_admin_listening_session_path(@listening_session),
+          notice: 'Listening session created. Now add some albums!'
       end
     end
 

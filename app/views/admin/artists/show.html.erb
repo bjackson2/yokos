@@ -1,5 +1,9 @@
 <h1>Artist</h1>
 
+<div>
+  <%= link_to "Back to all artists", admin_artists_path %>
+</div>
+
 <div class="flex flex-col gap-10 pt-12 sm:flex-row">
   <% if @artist.main_image.attached? %>
     <%= image_tag @artist.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
@@ -18,11 +22,7 @@
   <% end %>
 </div>
 
-<h2 class="mt-8 mb-4">Albums</h2>
-
-<%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
-  <%= button_tag "Add Album", class: "btn-secondary" %>
-<% end %>
+<h2 class="mt-8">Albums</h2>
 
 <% @artist.albums.sorted.each do |album| %>
   <div class="flex flex-col gap-10 pt-12 sm:flex-row">
@@ -41,3 +41,9 @@
     </div>
   </div>
 <% end %>
+
+<div class="my-6">
+  <%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
+    <%= button_tag "Add Album", class: "btn-secondary" %>
+  <% end %>
+</div>

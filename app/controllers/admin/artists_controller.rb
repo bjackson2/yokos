@@ -18,7 +18,7 @@ module Admin
       if @artist.errors.any?
         render :new
       else
-        redirect_to admin_artists_path
+        redirect_to admin_artist_path(@artist)
       end
     end
 
@@ -34,7 +34,7 @@ module Admin
       if @artist.errors.any?
         render :edit
       else
-        redirect_to admin_artists_path
+        redirect_to admin_artist_path(@artist)
       end
     end
 
