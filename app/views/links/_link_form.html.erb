@@ -1,0 +1,27 @@
+<div class="my-2">
+  <strong>For:</strong> <%= link_owner_text(link) %>
+</div>
+
+<%= form_for link do |form| %>
+  <%= hidden_field_tag :owner_id, link.owner.id %>
+  <%= hidden_field_tag :owner_type, link.owner.class %>
+  <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+    <div class="col-span-full">
+      <%= render "shared/forms/text_field", field: :text, form: form, label: "Link text" %>
+    </div>
+    <div class="col-span-full">
+      <%= render "shared/forms/text_field", field: :uri, form: form, label: "URL" %>
+    </div>
+    <div class="col-span-full flex">
+      <%= button_tag "Save", class: "btn-primary", type: "submit" %>
+      <div class="ml-8 mt-2">
+        <%= link_to "Cancel", link_form_redirect_path(link), class: "btn-secondary" %>
+      </div>
+      <% if link.persisted? %>
+        <div class="ml-8 mt-2">
+          <%= link_to "Delete", link_path(link), class: "btn-alert", data: { "turbo-method": "delete" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

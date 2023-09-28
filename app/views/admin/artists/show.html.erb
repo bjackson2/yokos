@@ -35,8 +35,21 @@
         <p class="text-base leading-7 text-gray-600">File under: <%= album.file_under %></p>
       <% end %>
       <p class="text-base leading-7 text-gray-600">Release date: <%= album.release_date.strftime("%B %-d, %Y") %></p>
+      <div class="my-2">
+        <strong>Links</strong>
+        <ul class="list-disc ml-8">
+          <% album.links.each do |link| %>
+            <li>
+              <p class="text-base leading-7 text-gray-600"><%= link_to link.text, link.uri, target: "_blank" %><span class="ml-6"><%= link_to "Edit", edit_link_path(link) %></span></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       <div>
-        <%= link_to "Edit", edit_admin_artist_album_path(@artist, album) %>
+        <%= link_to "Add link", new_link_path(owner_type: album.class, owner_id: album.id) %>
+      </div>
+      <div>
+        <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album) %>
       </div>
     </div>
   </div>

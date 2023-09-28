@@ -34,10 +34,10 @@
   }
 
   .btn-secondary {
-    @apply rounded-md bg-white px-3 py-2 text-gray-900 shadow-sm hover:bg-gray-100 border border-gray-900
+    @apply rounded-md bg-white px-3 py-2 text-gray-900 shadow-sm hover:bg-gray-100 hover:text-gray-900 border border-gray-900
   }
 
   .btn-alert {
-    @apply rounded-md bg-red-600 px-3 py-2 text-white shadow-sm hover:bg-red-700
+    @apply rounded-md border border-red-600 bg-red-600 px-3 py-2 text-white shadow-sm hover:bg-red-700 hover:text-white
   }
 }
