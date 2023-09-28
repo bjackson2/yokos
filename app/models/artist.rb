@@ -2,6 +2,7 @@
 
 class Artist < ApplicationRecord
   has_many :albums
+  has_many :links, as: :owner
   has_one_attached :main_image
   has_many_attached :images
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_134653) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_28_185013) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -54,6 +54,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_134653) do
     t.string "file_under"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "text"
+    t.string "uri", default: "", null: false
+    t.string "owner_type", null: false
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_links_on_owner"
   end
 
   create_table "listening_session_albums", force: :cascade do |t|
