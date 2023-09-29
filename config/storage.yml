@@ -10,6 +10,7 @@ amazon:
   service: S3
   region: us-east-1
   bucket: yokos-<%= Rails.env %>
+  public: true
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
