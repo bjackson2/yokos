@@ -2,6 +2,8 @@
 
 module Admin
   class AlbumsController < AdminController
+    before_action :validate_user
+
     def new
       @artist = Artist.find(params[:artist_id])
       @album = @artist.albums.new

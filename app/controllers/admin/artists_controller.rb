@@ -2,8 +2,6 @@
 
 module Admin
   class ArtistsController < AdminController
-    include ApplicationHelper
-
     before_action :validate_user, only: %i[new create edit update]
 
     def index
@@ -54,10 +52,6 @@ module Admin
         :file_under,
         :main_image
       )
-    end
-
-    def validate_user
-      redirect_to root_path unless can_edit_data?
     end
   end
 end

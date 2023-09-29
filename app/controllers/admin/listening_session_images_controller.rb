@@ -2,6 +2,8 @@
 
 module Admin
   class ListeningSessionImagesController < AdminController
+    before_action :validate_user
+
     def destroy
       listening_session = ListeningSession.find(params[:listening_session_id])
       listening_session.images.find(params[:id]).purge

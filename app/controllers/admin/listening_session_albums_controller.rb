@@ -3,6 +3,7 @@
 module Admin
   class ListeningSessionAlbumsController < AdminController
     skip_before_action :verify_authenticity_token, only: :index
+    before_action :validate_user, only: %i[new create destroy]
 
     def index
       @listening_session = ListeningSession.find(params[:listening_session_id])

@@ -2,6 +2,8 @@
 
 module Admin
   class ListeningSessionsController < AdminController
+    before_action :validate_user, only: %i[new create edit update]
+
     def index
       @listening_sessions = ListeningSession.sorted
     end

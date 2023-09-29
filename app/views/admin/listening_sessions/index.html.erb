@@ -1,10 +1,12 @@
 <h1>Listening Sessions</h1>
 
-<div class="my-8">
-  <%= link_to new_admin_listening_session_path do %>
-    <%= button_tag "Add new listening session", class: "btn-secondary" %>
-  <% end %>
-</div>
+<% if can_edit_data? %>
+  <div class="my-8">
+    <%= link_to new_admin_listening_session_path do %>
+      <%= button_tag "Add new listening session", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
 
 <ul role="list" class="divide-y divide-gray-100 my-8">
   <% @listening_sessions.each do |ls| %>
@@ -26,9 +28,11 @@
           </div>
         </div>
       <% end %>
-      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-        <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_admin_listening_session_path(ls) %></p>
-      </div>
+      <% if can_edit_data? %>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+          <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_admin_listening_session_path(ls) %></p>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>
