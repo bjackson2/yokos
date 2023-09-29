@@ -16,11 +16,13 @@
   </div>
 </div>
 
-<div class="my-6">
-  <%= link_to edit_admin_artist_path(@artist) do %>
-    <%= button_tag "Edit Artist", class: "btn-secondary" %>
-  <% end %>
-</div>
+<% if can_edit_data? %>
+  <div class="my-6">
+    <%= link_to edit_admin_artist_path(@artist) do %>
+      <%= button_tag "Edit Artist", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
 
 <h2 class="mt-8">Albums</h2>
 
@@ -40,23 +42,31 @@
         <ul class="list-disc ml-8">
           <% album.links.each do |link| %>
             <li>
-              <p class="text-base leading-7 text-gray-600"><%= link_to link.text, link.uri, target: "_blank" %><span class="ml-6"><%= link_to "Edit", edit_link_path(link) %></span></p>
+              <p class="text-base leading-7 text-gray-600"><%= link_to link.text, link.uri, target: "_blank" %>
+                <% if can_edit_data? %>
+                  <span class="ml-6"><%= link_to "Edit", edit_link_path(link) %></span>
+                <% end %>
+              </p>
             </li>
           <% end %>
         </ul>
       </div>
-      <div>
-        <%= link_to "Add link", new_link_path(owner_type: album.class, owner_id: album.id) %>
-      </div>
-      <div>
-        <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album) %>
-      </div>
+      <% if can_edit_data? %>
+        <div>
+          <%= link_to "Add link", new_link_path(owner_type: album.class, owner_id: album.id) %>
+        </div>
+        <div>
+          <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album) %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
 
-<div class="my-6">
-  <%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
-    <%= button_tag "Add Album", class: "btn-secondary" %>
-  <% end %>
-</div>
+<% if can_edit_data? %>
+  <div class="my-6">
+    <%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
+      <%= button_tag "Add Album", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,10 +1,12 @@
 <h1>Artists</h1>
 
-<div class="my-8">
-  <%= link_to new_admin_artist_path do %>
-    <%= button_tag "Add new artist", class: "btn-secondary" %>
-  <% end %>
-</div>
+<% if can_edit_data? %>
+  <div class="my-8">
+    <%= link_to new_admin_artist_path do %>
+      <%= button_tag "Add new artist", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
 
 <ul role="list" class="divide-y divide-gray-100 my-8">
   <% @artists.each do |artist| %>
@@ -19,9 +21,11 @@
           </div>
         </div>
       <% end %>
-      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-        <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_admin_artist_path(artist) %></p>
-      </div>
+      <% if can_edit_data? %>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+          <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_admin_artist_path(artist) %></p>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>
