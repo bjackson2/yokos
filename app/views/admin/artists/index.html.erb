@@ -15,7 +15,7 @@
             <%= image_tag artist.main_image, class: "h-14 w-14 flex-none rounded-full bg-gray-50" %>
           <% end %>
           <div class="min-w-0 flex-auto">
-            <p class="font-semibold leading-6 text-gray-900"><%= artist.name %></p>
+            <p class="font-semibold leading-6 text-gray-900"><%= artist_display_name(artist) %></p>
           </div>
         </div>
       <% end %>
