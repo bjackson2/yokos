@@ -11,7 +11,7 @@ module Admin
 
     def create
       @artist = Artist.find(params[:artist_id])
-      @album = @artist.albums.new(album_params)
+      @album = @artist.albums.new(album_params[:album])
       @album.save
 
       if @album.errors.any?
@@ -29,7 +29,7 @@ module Admin
     def update
       @artist = Artist.find(params[:artist_id])
       @album = @artist.albums.find(params[:id])
-      @album.update(album_params)
+      @album.update(album_params[:album])
 
       if @album.errors.any?
         render :edit
