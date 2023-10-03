@@ -1,0 +1,26 @@
+<h1>Albums</h1>
+
+<div class="my-8">
+  <%= form_for @album_search, url: albums_path, method: :get, data: { turbo: false } do |form| %>
+    <%= render "shared/forms/text_field", form: form, field: :search, label: "Search" %>
+  <% end %>
+</div>
+
+<ul role="list" class="divide-y divide-gray-100 my-8">
+  <% @albums.each do |album| %>
+    <li class="flex justify-between gap-x-6 py-5">
+      <%= link_to admin_artist_path(album.artist) do %>
+        <div class="flex min-w-0 gap-x-4">
+          <% if album.main_image.attached? %>
+            <%= image_tag album.main_image, class: "h-14 w-14 flex-none rounded-full bg-gray-50" %>
+          <% end %>
+          <div class="min-w-0 flex-auto">
+            <p class="font-semibold leading-6 text-gray-900"><%= album_display_name(album) %></p>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= render "shared/pagination", collection: @albums %>

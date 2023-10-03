@@ -7,7 +7,7 @@ module Admin
 
     def index
       @listening_session = ListeningSession.find(params[:listening_session_id])
-      @albums = Album.search(params[:q])
+      @albums = AlbumSearch.new(search: params[:q]).albums
 
       respond_to(&:turbo_stream)
     end

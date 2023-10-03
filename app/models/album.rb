@@ -15,13 +15,4 @@ class Album < ApplicationRecord
                    order(Arel.sql("CASE WHEN albums.file_under IS NULL OR albums.file_under = '' THEN lower(albums.title) ELSE lower(albums.file_under) END ASC"))
                  }
   # rubocop:enable Layout/LineLength
-
-  def self.search(album_query)
-    album_query.downcase.strip
-
-    joins(:artist)
-      .where("lower(albums.title) like '%#{album_query}%' or lower(artists.name) like '%#{album_query}%'")
-      .sorted
-      .first(10)
-  end
 end

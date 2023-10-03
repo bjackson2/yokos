@@ -41,7 +41,15 @@ module Admin
     private
 
     def album_params
-      params.require(:album).permit(:title, :file_under, :main_image, :release_date)
+      params.permit(
+        :authenticity_token,
+        album: %i[
+          title
+          file_under
+          main_image
+          release_date
+        ]
+      )
     end
   end
 end

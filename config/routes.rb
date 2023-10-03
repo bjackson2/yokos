@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :artists
+  resources :albums, only: :index
   resources :links
 
   namespace :admin do
