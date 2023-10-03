@@ -14,17 +14,21 @@ class AlbumSearch
     album_search.sorted.page(page)
   end
 
+  def album_count
+    album_search.count
+  end
+
   private
 
   def album_search
-    if search.present?
-      parsed_search = search.downcase.strip
+    @_album_search ||= if search.present?
+                         parsed_search = search.downcase.strip
 
-      Album
-        .joins(:artist)
-        .where("lower(albums.title) like '%#{parsed_search}%' or lower(artists.name) like '%#{parsed_search}%'")
-    else
-      Album.all
-    end
+                         Album
+                           .joins(:artist)
+                           .where("lower(albums.title) like '%#{parsed_search}%' or lower(artists.name) like '%#{parsed_search}%'")
+                       else
+                         Album.all
+                       end
   end
 end
