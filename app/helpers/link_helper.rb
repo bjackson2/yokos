@@ -2,8 +2,10 @@
 
 module LinkHelper
   def link_form_redirect_path(link)
-    if link.owner.is_a?(Album) || link.owner.is_a?(Artist)
+    if link.owner.is_a?(Album)
       admin_artist_path(link.owner.artist)
+    elsif link.owner.is_a?(Artist)
+      admin_artist_path(link.owner)
     else
       admin_artists_path
     end
@@ -12,6 +14,8 @@ module LinkHelper
   def link_owner_text(link)
     if link.owner.is_a?(Album)
       album_display_name(link.owner)
+    elsif link.owner.is_a?(Artist)
+      link.owner.name
     else
       'N/A'
     end
