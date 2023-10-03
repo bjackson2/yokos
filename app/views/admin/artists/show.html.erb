@@ -27,12 +27,27 @@
   </div>
 <% end %>
 
-<h2 class="mt-8">Albums</h2>
+<h2 class="mt-16">Albums</h2>
+
+<% if can_edit_data? %>
+  <div class="my-6">
+    <%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
+      <%= button_tag "Add Album", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
 
 <% @artist.albums.sorted.each do |album| %>
-  <div class="flex flex-col gap-10 pt-12 sm:flex-row">
+  <div class="flex flex-col gap-10 sm:flex-row">
     <% if album.main_image.attached? %>
-      <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
+      <div>
+        <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
+        <% if can_edit_data? %>
+          <div class="my-4">
+            <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
     <div class="max-w-xl flex-auto">
       <h3><%= album.title %></h3>
@@ -43,19 +58,6 @@
       <div class="my-2">
         <%= render "shared/links", owner: album %>
       </div>
-      <% if can_edit_data? %>
-        <div>
-          <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album) %>
-        </div>
-      <% end %>
     </div>
-  </div>
-<% end %>
-
-<% if can_edit_data? %>
-  <div class="my-6">
-    <%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
-      <%= button_tag "Add Album", class: "btn-secondary" %>
-    <% end %>
   </div>
 <% end %>
