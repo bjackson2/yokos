@@ -27,37 +27,38 @@
   </div>
 <% end %>
 
-<h2 class="mt-16">Albums</h2>
-
-<% if can_edit_data? %>
-  <div class="my-6">
-    <%= link_to new_admin_artist_album_path(artist_id: @artist) do %>
-      <%= button_tag "Add Album", class: "btn-secondary" %>
-    <% end %>
-  </div>
-<% end %>
-
-<% @artist.albums.sorted.each do |album| %>
-  <div class="flex flex-col gap-10 sm:flex-row">
-    <% if album.main_image.attached? %>
-      <div>
-        <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
-        <% if can_edit_data? %>
-          <div class="my-4">
-            <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
-          </div>
-        <% end %>
+<div class="mt-12">
+  <div class="flex items-center my-6">
+    <h2>Albums</h2>
+    <% if can_edit_data? %>
+      <div class="p-4 ml-4">
+        <%= link_to "+ New Album", new_admin_artist_album_path(artist_id: @artist), class: 'btn-secondary p-1' %>
       </div>
     <% end %>
-    <div class="max-w-xl flex-auto">
-      <h3><%= album.title %></h3>
-      <% if album.file_under.present? %>
-        <p class="text-base leading-7 text-gray-600">File under: <%= album.file_under %></p>
+  </div>
+
+  <% @artist.albums.sorted.each do |album| %>
+    <div class="flex flex-col gap-10 sm:flex-row mb-16">
+      <% if album.main_image.attached? %>
+        <div>
+          <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
+          <% if can_edit_data? %>
+            <div class="my-4">
+              <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
-      <p class="text-base leading-7 text-gray-600">Release date: <%= album.release_date.strftime("%B %-d, %Y") %></p>
-      <div class="my-2">
-        <%= render "shared/links", owner: album %>
+      <div class="max-w-xl flex-auto">
+        <h3><%= album.title %></h3>
+        <% if album.file_under.present? %>
+          <p class="text-base leading-7 text-gray-600">File under: <%= album.file_under %></p>
+        <% end %>
+        <p class="text-base leading-7 text-gray-600">Release date: <%= album.release_date.strftime("%B %-d, %Y") %></p>
+        <div class="my-2">
+          <%= render "shared/links", owner: album %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
