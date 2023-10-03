@@ -8,7 +8,16 @@ class Artist < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :sorted, lambda do
+  before_save :format_values
+
+  scope :sorted, lambda {
     order(Arel.sql("CASE WHEN file_under IS NULL OR file_under = '' THEN lower(name) ELSE lower(file_under) END ASC"))
+  }
+
+  private
+
+  def format_values
+    self[:name] = self[:name].strip
+    self[:file_under] = self[:file_under].strip
   end
 end

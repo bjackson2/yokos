@@ -7,8 +7,10 @@ class Album < ApplicationRecord
   has_many :links, as: :owner
   has_one_attached :main_image
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { case_sensitive: false, scope: :artist_id }
   validates :release_date, presence: true
+
+  before_save :format_values
 
   # rubocop:disable Layout/LineLength
   scope :sorted, lambda {
@@ -16,4 +18,11 @@ class Album < ApplicationRecord
                  }
   # rubocop:enable Layout/LineLength
   scope :chronological, -> { order(release_date: :asc) }
+
+  private
+
+  def format_values
+    self[:title] = self[:title].strip
+    self[:file_under] = self[:file_under].strip
+  end
 end
