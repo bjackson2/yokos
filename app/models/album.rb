@@ -15,4 +15,5 @@ class Album < ApplicationRecord
                    order(Arel.sql("CASE WHEN albums.file_under IS NULL OR albums.file_under = '' THEN lower(albums.title) ELSE lower(albums.file_under) END ASC"))
                  }
   # rubocop:enable Layout/LineLength
+  scope :chronological, -> { order(release_date: :asc) }
 end

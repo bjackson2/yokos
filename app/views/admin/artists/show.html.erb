@@ -37,7 +37,7 @@
     <% end %>
   </div>
 
-  <% @artist.albums.sorted.each do |album| %>
+  <% @artist.albums.chronological.each do |album| %>
     <div class="flex flex-col gap-10 sm:flex-row mb-16">
       <% if album.main_image.attached? %>
         <div>
