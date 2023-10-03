@@ -8,9 +8,13 @@
   </div>
 <% end %>
 
-<%= form_for @artist_search, url: admin_artists_path, method: :get, data: { turbo: false } do |form| %>
-  <%= render "shared/forms/text_field", form: form, field: :search, label: "Search" %>
-<% end %>
+<div class="my-8">
+  <%= form_for @artist_search, url: admin_artists_path, method: :get, data: { turbo: false } do |form| %>
+    <%= render "shared/forms/text_field", form: form, field: :search, label: "Search" %>
+  <% end %>
+</div>
+
+<em><%= number_with_delimiter(@artist_search.artist_count) %> <%= 'artist'.pluralize(@artist_search.artist_count) %></em>
 
 <ul role="list" class="divide-y divide-gray-100 my-8">
   <% @artists.each do |artist| %>

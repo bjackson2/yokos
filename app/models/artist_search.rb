@@ -16,9 +16,17 @@ class ArtistSearch
     artist_search.sorted.page(page).per(RESULTS_PER_PAGE)
   end
 
+  def artist_count
+    artist_search.count
+  end
+
   private
 
   def artist_search
+    @artist_search ||= artist_query
+  end
+
+  def artist_query
     if search.present?
       Artist.where("lower(name) like '%#{search.downcase.strip}%'")
     else
