@@ -6,11 +6,9 @@ class Artist < ApplicationRecord
   has_one_attached :main_image
   has_many_attached :images
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 
-  # rubocop:disable Layout/LineLength
-  scope :sorted, lambda {
-                   order(Arel.sql("CASE WHEN file_under IS NULL OR file_under = '' THEN lower(name) ELSE lower(file_under) END ASC"))
-                 }
-  # rubocop:enable Layout/LineLength
+  scope :sorted, lambda do
+    order(Arel.sql("CASE WHEN file_under IS NULL OR file_under = '' THEN lower(name) ELSE lower(file_under) END ASC"))
+  end
 end
