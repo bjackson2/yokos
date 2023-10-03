@@ -10,7 +10,7 @@ class Album < ApplicationRecord
   validates :title, presence: true, uniqueness: { case_sensitive: false, scope: :artist_id }
   validates :release_date, presence: true
 
-  before_save :format_values
+  before_validation :format_values
 
   # rubocop:disable Layout/LineLength
   scope :sorted, lambda {

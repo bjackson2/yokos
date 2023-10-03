@@ -11,6 +11,9 @@ AllCops:
 Layout/ArgumentAlignment:
   EnforcedStyle: 'with_fixed_indentation'
 
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/MethodLength:
   Max: 30
 

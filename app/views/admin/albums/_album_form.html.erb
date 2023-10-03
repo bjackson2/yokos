@@ -1,5 +1,5 @@
 <div class="my-12" x-data="{ showPreview: false, logoPreviewSrc: '#' }">
-  <%= form_for [:admin, artist, album] do |form| %>
+  <%= form_for [:admin, artist, album], data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-4">
         <%= render "shared/forms/text_field", field: :title, form: form, label: "Album title" %>
@@ -24,13 +24,9 @@
           <%= form.file_field :main_image, class: "form-file-input", accept: 'image/png, image/jpeg', "x-on:change" => "showPreview = true; logoPreviewSrc = URL.createObjectURL($event.target.files[0]);" %>
         </div>
       </div>
-      <div class="col-span-full flex">
+      <div class="col-span-full flex items-end">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
-        <div class="ml-8">
-          <%= link_to admin_artist_path(artist) do %>
-            <%= button_tag "Cancel", class: "btn-secondary" %>
-          <% end %>
-        </div>
+        <%= link_to 'Cancel', admin_artist_path(artist), class: 'btn-secondary ml-8' %>
       </div>
     </div>
   <% end %>

@@ -22,6 +22,7 @@ module Admin
       @artist.update(artist_params[:artist])
 
       if @artist.errors.any?
+        flash.now[:error] = model_error_display(@artist)
         render :new
       else
         redirect_to admin_artist_path(@artist)
@@ -38,6 +39,7 @@ module Admin
       @artist.update(artist_params[:artist])
 
       if @artist.errors.any?
+        flash.now[:error] = model_error_display(@artist)
         render :edit
       else
         redirect_to admin_artist_path(@artist)
