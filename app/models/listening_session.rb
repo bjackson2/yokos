@@ -14,6 +14,7 @@ class ListeningSession < ApplicationRecord
   has_many_attached :images
 
   validates :session_type, presence: true
+  validates :date, uniqueness: true
 
   scope :sorted, -> { order(date: :desc) }
 

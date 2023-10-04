@@ -1,5 +1,5 @@
 <div class="my-12">
-  <%= form_for [:admin, listening_session] do |form| %>
+  <%= form_for [:admin, listening_session], data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-4">
         <%= form.label :date, "Date", class: "form-label" %>
@@ -18,21 +18,13 @@
         <%= form.label :images, "Images", class: "form-label" %>
         <%= form.file_field :images, class: "form-file-input", accept: 'image/png, image/jpeg', multiple: true %>
       </div>
-      <div class="col-span-full flex">
+      <div class="col-span-full flex items-end">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
-        <div class="ml-8">
-          <%= link_to listening_session.persisted? ? admin_listening_session_path(listening_session) : admin_listening_sessions_path do %>
-            <%= button_tag "Cancel", class: "btn-secondary" %>
-          <% end %>
-        </div>
-        <% if listening_session.persisted? %>
-          <div class="ml-8">
-            <%= link_to admin_listening_session_path(listening_session), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" } do %>
-              <%= button_tag 'Delete', class: 'btn-alert' %>
-            <% end %>
-          </div>
-        <% end %>
+        <%= link_to "Cancel", listening_session.persisted? ? admin_listening_session_path(listening_session) : admin_listening_sessions_path, class: "btn-secondary ml-8" %>
       </div>
     </div>
   <% end %>
 </div>
+<% if listening_session.persisted? %>
+  <%= link_to "Delete", admin_listening_session_path(listening_session), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: "btn-alert" %>
+<% end%>

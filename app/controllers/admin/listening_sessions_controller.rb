@@ -21,6 +21,7 @@ module Admin
       @listening_session.save
 
       if @listening_session.errors.any?
+        flash.now[:error] = model_error_display(@listening_session)
         render :new
       else
         redirect_to admin_listening_session_path(@listening_session),
@@ -37,6 +38,7 @@ module Admin
       @listening_session.update(listening_session_params)
 
       if @listening_session.errors.any?
+        flash.now[:error] = model_error_display(@listening_session)
         render :edit
       else
         redirect_to admin_listening_session_path(@listening_session)
