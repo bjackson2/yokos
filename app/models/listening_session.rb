@@ -8,6 +8,7 @@ class ListeningSession < ApplicationRecord
   has_many :albums, through: :listening_session_albums
   has_many :yokos_member_listening_sessions
   has_many :attendees, through: :yokos_member_listening_sessions, source: :yokos_member
+  has_many :links, as: :owner
   has_many_attached :images
 
   validates :session_type, presence: true

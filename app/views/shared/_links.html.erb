@@ -1,15 +1,21 @@
-<h3>Links</h3>
+<% show_header = defined?(header) ? header : true %>
+<% can_edit_links = defined?(edit) ? edit : true %>
+<% if show_header %>
+  <h3>Links</h3>
+<% end %>
 <ul class="list-disc ml-8">
   <% owner.links.each do |link| %>
     <li>
       <p class="text-base leading-7 text-gray-600"><%= link_to link.text, link.uri, target: "_blank" %>
-        <% if can_edit_data? %>
+        <% if can_edit_data? && can_edit_links %>
           <span class="ml-6"><%= link_to "Edit", edit_link_path(link) %></span>
         <% end %>
       </p>
     </li>
   <% end %>
 </ul>
-<div class="my-2">
-  <%= link_to "Add link", new_link_path(owner_type: owner.class, owner_id: owner.id) %>
-</div>
+<% if can_edit_data? && can_edit_links %>
+  <div class="my-2">
+    <%= link_to "Add link", new_link_path(owner_type: owner.class, owner_id: owner.id) %>
+  </div>
+<% end %>

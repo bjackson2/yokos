@@ -1,0 +1,90 @@
+<h1>Session</h1>
+
+<div>
+  <div class="mt-6">
+    <dl class="divide-y divide-gray-100">
+      <%= render "list_row", row_title: "Date", row_text: @listening_session.date.strftime("%B %-d, %Y") %>
+      <%= render "list_row", row_title: "Type", row_text: @listening_session.session_type.humanize %>
+      <%= render "list_row", row_title: "Theme", row_text: @listening_session.theme.presence || "N/A" %>
+      <%= render "list_row", row_title: "Notes", row_text: @listening_session.notes %>
+      <%= render "list_row", row_title: "Links", row_text: render("shared/links", owner: @listening_session, header: false) %>
+    </dl>
+  </div>
+</div>
+
+<% if can_edit_data? %>
+  <div class="my-6">
+    <%= link_to edit_admin_listening_session_path(@listening_session) do %>
+      <%= button_tag "Edit Session", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="mt-12">
+  <div class="flex items-center my-6">
+    <h2>Albums</h2>
+    <% if can_edit_data? %>
+      <div class="p-4 ml-4">
+        <%= link_to "+ Add Album", new_admin_listening_session_listening_session_album_path(listening_session_id: @listening_session), class: 'btn-secondary p-1' %>
+      </div>
+    <% end %>
+  </div>
+
+  <% @listening_session.listening_session_albums.each do |listening_session_album| %>
+    <% album = listening_session_album.album %>
+    <div class="flex flex-col gap-10 sm:flex-row mb-16">
+      <% if album.main_image.attached? %>
+        <div>
+          <%= link_to admin_artist_path(album.artist) do %>
+            <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
+          <% end %>
+          <% if can_edit_data? %>
+            <div class="my-4">
+              <%= link_to admin_listening_session_listening_session_album_path(album, listening_session_id: @listening_session), data: { "turbo-method": :delete } do %>
+                <%= button_tag 'Remove', class: 'btn-alert p-1' %>
+              <% end %>
+            </div>
+          <% end%>
+        </div>
+      <% end %>
+      <div class="max-w-xl flex-auto">
+        <h3><%= album_display_name(album) %></h3>
+        <% if album.file_under.present? %>
+          <p class="text-base leading-7 text-gray-600">File under: <%= album.file_under %></p>
+        <% end %>
+        <p class="text-base leading-7 text-gray-600">Release date: <%= album.release_date.strftime("%B %-d, %Y") %></p>
+        <p class="text-base leading-7 text-gray-600">Picked by: <%= listening_session_album.yokos_member.name %></p>
+        <div class="my-2">
+          <%= render "shared/links", owner: album, edit: false %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-12">
+  <div class="flex items-center my-6">
+    <h2>Images</h2>
+    <% if can_edit_data? %>
+      <div class="p-4 ml-4">
+        <%= link_to "+ Add Images", edit_admin_listening_session_path(@listening_session), class: 'btn-secondary p-1' %>
+      </div>
+    <% end %>
+  </div>
+  <% if @listening_session.images.attached? %>
+    <div class="col-span-full flex">
+      <% @listening_session.images.each do |image| %>
+        <div class="mx-2">
+          <%= link_to url_for(image) do %>
+            <%= image_tag image, class: "w-96" %>
+          <% end %>
+          <% if can_edit_data? %>
+            <%= link_to admin_listening_session_listening_session_image_path(image, listening_session_id: @listening_session), data: { "turbo-method": :delete } do %>
+              <%= button_tag 'Delete', class: 'btn-alert my-2 p-1' %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<div>

@@ -31,7 +31,7 @@ module Admin
       if @listening_session_album.errors.any?
         render :new
       else
-        redirect_to edit_admin_listening_session_path(@listening_session)
+        redirect_to admin_listening_session_path(@listening_session)
       end
     end
 
@@ -39,7 +39,7 @@ module Admin
       listening_session = ListeningSession.find(params[:listening_session_id])
       listening_session.listening_session_albums.find_by(album_id: params[:id]).destroy!
 
-      redirect_to edit_admin_listening_session_path(listening_session)
+      redirect_to admin_listening_session_path(listening_session)
     end
 
     private

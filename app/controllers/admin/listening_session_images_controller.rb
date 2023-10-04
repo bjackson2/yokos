@@ -8,7 +8,7 @@ module Admin
       listening_session = ListeningSession.find(params[:listening_session_id])
       listening_session.images.find(params[:id]).purge
 
-      redirect_to edit_admin_listening_session_path(listening_session)
+      redirect_to admin_listening_session_path(listening_session)
     end
 
     private

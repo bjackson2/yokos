@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-user = User.create!(email: 'dude@duderson.com')
-user2 = User.create!(email: 'dame@damely.com')
+user = User.create!(email: 'dude@duderson.com', password: "asdf1234")
+user2 = User.create!(email: 'dame@damely.com', password: "asdf1234")
 
 member = YokosMember.create!(name: "Dude Duderson", user: user)
 member2 = YokosMember.create!(name: "Dame Damely", user: user2)

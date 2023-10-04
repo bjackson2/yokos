@@ -8,6 +8,10 @@ module Admin
       @listening_sessions = ListeningSession.sorted
     end
 
+    def show
+      @listening_session = ListeningSession.find(params[:id])
+    end
+
     def new
       @listening_session = ListeningSession.new
     end
@@ -35,7 +39,7 @@ module Admin
       if @listening_session.errors.any?
         render :edit
       else
-        redirect_to admin_listening_sessions_path
+        redirect_to admin_listening_session_path(@listening_session)
       end
     end
 

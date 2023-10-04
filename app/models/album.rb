@@ -22,7 +22,7 @@ class Album < ApplicationRecord
   private
 
   def format_values
-    self[:title] = self[:title].strip
-    self[:file_under] = self[:file_under].strip
+    self[:title] = self[:title].to_s.strip
+    self[:file_under] = self[:file_under].to_s.strip
   end
 end

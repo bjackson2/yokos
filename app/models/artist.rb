@@ -17,7 +17,7 @@ class Artist < ApplicationRecord
   private
 
   def format_values
-    self[:name] = self[:name].strip
-    self[:file_under] = self[:file_under].strip
+    self[:name] = self[:name].to_s.strip
+    self[:file_under] = self[:file_under].to_s.strip
   end
 end
