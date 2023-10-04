@@ -62,6 +62,49 @@
   <% end %>
 </div>
 
+<div class="mt-12">
+  <div class="flex items-center my-6">
+    <h2>Movies</h2>
+    <% if can_edit_data? %>
+      <div class="p-4 ml-4">
+        <%= link_to "+ Add Movie", new_admin_listening_session_listening_session_movie_path(listening_session_id: @listening_session), class: 'btn-secondary p-1' %>
+      </div>
+    <% end %>
+  </div>
+
+  <% @listening_session.movies.each do |movie| %>
+    <div class="flex flex-col gap-10 sm:flex-row mb-16">
+      <% if movie.main_image.attached? %>
+        <div>
+          <%= link_to movie_path(movie) do %>
+            <%= image_tag movie.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
+          <% end %>
+          <% if can_edit_data? %>
+            <div class="my-4">
+              <%= link_to admin_listening_session_listening_session_movie_path(movie, listening_session_id: @listening_session), data: { "turbo-method": :delete } do %>
+                <%= button_tag 'Remove', class: 'btn-alert p-1' %>
+              <% end %>
+            </div>
+          <% end%>
+        </div>
+      <% end %>
+      <div class="max-w-xl flex-auto">
+        <h3><%= movie.title %></h3>
+        <% if movie.file_under.present? %>
+          <p class="text-base leading-7 text-gray-600">File under: <%= movie.file_under %></p>
+        <% end %>
+        <p class="text-base leading-7 text-gray-600">Release year: <%= movie.release_year %></p>
+        <% if movie.artist.present? %>
+          <p class="text-base leading-7 text-gray-600">Artist: <%= link_to movie.artist.name, admin_artist_path(movie.artist) %></p>
+        <% end %>
+        <div class="my-2">
+          <%= render "shared/links", owner: movie, edit: false %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <% if can_view_session_images? %>
   <div class="mt-12">
     <div class="flex items-center my-6">

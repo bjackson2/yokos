@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MoviesController < AdminController
-  before_action :validate_user, only: %i[new create edit update destroy]
+  before_action :validate_user, only: %i[new create edit update]
 
   def index
     @movies = Movie.sorted
