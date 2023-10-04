@@ -24,7 +24,7 @@ module Admin
         render :new
       else
         redirect_to admin_listening_session_path(@listening_session),
-          notice: 'Listening session created. Now add some albums!'
+          notice: 'Session created. Now add some albums!'
       end
     end
 
