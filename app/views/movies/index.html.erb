@@ -1,0 +1,35 @@
+<h1>Movies</h1>
+
+<% if can_edit_data? %>
+  <div class="my-8">
+    <%= link_to new_movie_path do %>
+      <%= button_tag "Add new movie", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
+
+<em><%= number_with_delimiter(Movie.count) %> <%= 'movie'.pluralize(Movie.count) %></em>
+
+<ul role="list" class="divide-y divide-gray-100 my-8">
+  <% @movies.each do |movie| %>
+    <li class="flex justify-between gap-x-6 py-5">
+      <%= link_to movie_path(movie) do %>
+        <div class="flex min-w-0 gap-x-4">
+          <% if movie.main_image.attached? %>
+            <%= image_tag movie.main_image, class: "h-14 w-14 flex-none rounded-full bg-gray-50" %>
+          <% end %>
+          <div class="min-w-0 flex-auto">
+            <p class="font-semibold leading-6 text-gray-900"><%= movie.title %></p>
+          </div>
+        </div>
+      <% end %>
+      <% if can_edit_data? %>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+          <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_movie_path(movie) %></p>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= render "shared/pagination", collection: @movies.page(1) %>

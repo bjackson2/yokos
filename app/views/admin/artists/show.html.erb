@@ -1,9 +1,5 @@
 <h1>Artist</h1>
 
-<div>
-  <%= link_to "Back to all artists", admin_artists_path %>
-</div>
-
 <div class="flex flex-col gap-10 pt-12 sm:flex-row">
   <% if @artist.main_image.attached? %>
     <%= image_tag @artist.main_image, class: "w-96 flex-none rounded-2xl object-cover" %>

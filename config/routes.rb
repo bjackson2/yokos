@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :artists
   resources :albums, only: :index
   resources :links
+  resources :movies
 
   namespace :admin do
     resources :artists do
