@@ -43,6 +43,15 @@ module Admin
       end
     end
 
+    def destroy
+      @listening_session = ListeningSession.find(params[:id])
+      @listening_session.destroy!
+
+      flash[:notice] = 'Session deleted'
+
+      redirect_to admin_listening_sessions_path
+    end
+
     private
 
     def listening_session_params

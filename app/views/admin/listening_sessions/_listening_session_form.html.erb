@@ -25,6 +25,13 @@
             <%= button_tag "Cancel", class: "btn-secondary" %>
           <% end %>
         </div>
+        <% if listening_session.persisted? %>
+          <div class="ml-8">
+            <%= link_to admin_listening_session_path(listening_session), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" } do %>
+              <%= button_tag 'Delete', class: 'btn-alert' %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
