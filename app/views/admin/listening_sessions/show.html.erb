@@ -62,29 +62,31 @@
   <% end %>
 </div>
 
-<div class="mt-12">
-  <div class="flex items-center my-6">
-    <h2>Images</h2>
-    <% if can_edit_data? %>
-      <div class="p-4 ml-4">
-        <%= link_to "+ Add Images", edit_admin_listening_session_path(@listening_session), class: 'btn-secondary p-1' %>
-      </div>
-    <% end %>
-  </div>
-  <% if @listening_session.images.attached? %>
-    <div class="col-span-full flex">
-      <% @listening_session.images.each do |image| %>
-        <div class="mx-2">
-          <%= link_to url_for(image) do %>
-            <%= image_tag image, class: "w-96" %>
-          <% end %>
-          <% if can_edit_data? %>
-            <%= link_to admin_listening_session_listening_session_image_path(image, listening_session_id: @listening_session), data: { "turbo-method": :delete } do %>
-              <%= button_tag 'Delete', class: 'btn-alert my-2 p-1' %>
-            <% end %>
-          <% end %>
+<% if can_view_session_images? %>
+  <div class="mt-12">
+    <div class="flex items-center my-6">
+      <h2>Images</h2>
+      <% if can_edit_data? %>
+        <div class="p-4 ml-4">
+          <%= link_to "+ Add Images", edit_admin_listening_session_path(@listening_session), class: 'btn-secondary p-1' %>
         </div>
       <% end %>
     </div>
-  <% end %>
-<div>
+    <% if @listening_session.images.attached? %>
+      <div class="col-span-full flex">
+        <% @listening_session.images.each do |image| %>
+          <div class="mx-2">
+            <%= link_to url_for(image) do %>
+              <%= image_tag image, class: "w-96" %>
+            <% end %>
+            <% if can_edit_data? %>
+              <%= link_to admin_listening_session_listening_session_image_path(image, listening_session_id: @listening_session), data: { "turbo-method": :delete } do %>
+                <%= button_tag 'Delete', class: 'btn-alert my-2 p-1' %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <div>
+<% end %>
