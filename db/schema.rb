@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_185013) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_190723) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,6 +77,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_185013) do
     t.index ["yokos_member_id"], name: "index_listening_session_albums_on_yokos_member_id"
   end
 
+  create_table "listening_session_movies", force: :cascade do |t|
+    t.integer "listening_session_id", null: false
+    t.integer "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listening_session_id"], name: "index_listening_session_movies_on_listening_session_id"
+    t.index ["movie_id"], name: "index_listening_session_movies_on_movie_id"
+  end
+
   create_table "listening_sessions", force: :cascade do |t|
     t.date "date"
     t.string "session_type", null: false
@@ -84,6 +93,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_185013) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "file_under"
+    t.integer "release_year", null: false
+    t.integer "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_movies_on_artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,6 +141,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_185013) do
   add_foreign_key "listening_session_albums", "albums"
   add_foreign_key "listening_session_albums", "listening_sessions"
   add_foreign_key "listening_session_albums", "yokos_members"
+  add_foreign_key "listening_session_movies", "listening_sessions"
+  add_foreign_key "listening_session_movies", "movies"
+  add_foreign_key "movies", "artists"
   add_foreign_key "yokos_member_listening_sessions", "listening_sessions"
   add_foreign_key "yokos_member_listening_sessions", "yokos_members"
   add_foreign_key "yokos_members", "users"
