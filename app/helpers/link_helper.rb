@@ -10,6 +10,8 @@ module LinkHelper
       admin_artist_path(link.owner)
     elsif link.owner.is_a?(Movie)
       movie_path(link.owner)
+    elsif link.owner.is_a?(Gallery)
+      gallery_path(link.owner)
     elsif link.owner.is_a?(ListeningSession)
       admin_listening_session_path(link.owner)
     else
@@ -24,6 +26,8 @@ module LinkHelper
       link.owner.name
     elsif link.owner.is_a?(Movie)
       link.owner.title
+    elsif link.owner.is_a?(Gallery)
+      link.owner.name
     elsif link.owner.is_a?(ListeningSession)
       "Session on #{link.owner.date.strftime('%B %-d, %Y')}"
     else

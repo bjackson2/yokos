@@ -12,4 +12,8 @@ module ApplicationHelper
   def can_view_session_images?
     user_signed_in?
   end
+
+  def can_view_galleries?
+    user_signed_in?
+  end
 end

@@ -1,0 +1,20 @@
+<div class="my-12">
+  <%= form_for gallery, data: { turbo: false } do |form| %>
+    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/text_field", field: :name, form: form, label: "Name" %>
+      </div>
+      <div class="sm:col-span-4">
+        <%= render "shared/forms/text_area", field: :notes, form: form, label: "Notes" %>
+      </div>
+      <div class="col-span-full">
+        <%= form.label :images, "Images", class: "form-label" %>
+        <%= form.file_field :images, class: "form-file-input", accept: 'image/png, image/jpeg', multiple: true %>
+      </div>
+      <div class="col-span-full flex items-end">
+        <%= button_tag "Save", class: "btn-primary", type: "submit" %>
+        <%= link_to 'Cancel', gallery.persisted? ? gallery_path(gallery) : galleries_path, class: 'btn-secondary ml-8' %>
+      </div>
+    </div>
+  <% end %>
+</div>

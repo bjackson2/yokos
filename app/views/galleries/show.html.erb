@@ -1,0 +1,21 @@
+<h1>Gallery</h1>
+
+<div class="mt-6">
+  <dl class="divide-y divide-gray-100">
+    <%= render "shared/list_row", row_title: "Name", row_text: @gallery.name %>
+    <%= render "shared/list_row", row_title: "Notes", row_text: @gallery.notes %>
+    <%= render "shared/list_row", row_title: "Links", row_text: render("shared/links", owner: @gallery, header: false) %>
+  </dl>
+</div>
+
+<% if can_edit_data? %>
+  <div class="my-6">
+    <%= link_to edit_gallery_path(@gallery) do %>
+      <%= button_tag "Edit Gallery", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
+
+<h1>Images</h1>
+
+<%= render "shared/image_grid/image_grid", images: @gallery.images %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :artists
   resources :albums, only: :index
+  resources :galleries
   resources :links
   resources :movies
 

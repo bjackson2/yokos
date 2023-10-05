@@ -1,15 +1,13 @@
 <h1>YOKOS Session</h1>
 
-<div>
-  <div class="mt-6">
-    <dl class="divide-y divide-gray-100">
-      <%= render "list_row", row_title: "Date", row_text: @listening_session.date.strftime("%B %-d, %Y") %>
-      <%= render "list_row", row_title: "Type", row_text: @listening_session.session_type.humanize %>
-      <%= render "list_row", row_title: "Theme", row_text: @listening_session.theme.presence || "N/A" %>
-      <%= render "list_row", row_title: "Notes", row_text: @listening_session.notes %>
-      <%= render "list_row", row_title: "Links", row_text: render("shared/links", owner: @listening_session, header: false) %>
-    </dl>
-  </div>
+<div class="mt-6">
+  <dl class="divide-y divide-gray-100">
+    <%= render "shared/list_row", row_title: "Date", row_text: @listening_session.date.strftime("%B %-d, %Y") %>
+    <%= render "shared/list_row", row_title: "Type", row_text: @listening_session.session_type.humanize %>
+    <%= render "shared/list_row", row_title: "Theme", row_text: @listening_session.theme.presence || "N/A" %>
+    <%= render "shared/list_row", row_title: "Notes", row_text: @listening_session.notes %>
+    <%= render "shared/list_row", row_title: "Links", row_text: render("shared/links", owner: @listening_session, header: false) %>
+  </dl>
 </div>
 
 <% if can_edit_data? %>

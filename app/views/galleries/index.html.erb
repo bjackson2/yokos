@@ -1,0 +1,26 @@
+<h1>Galleries</h1>
+
+<% if can_edit_data? %>
+  <div class="my-8">
+    <%= link_to new_gallery_path do %>
+      <%= button_tag "Add new gallery", class: "btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
+
+<em><%= number_with_delimiter(@galleries.count) %> <%= 'gallery'.pluralize(@galleries.count) %></em>
+
+<ul role="list" class="divide-y divide-gray-100 my-8">
+  <% @galleries.each do |gallery| %>
+    <li class="flex justify-between gap-x-6 py-5">
+      <%= link_to gallery_path(gallery) do %>
+        <div class="min-w-0 flex-auto">
+            <p class="font-semibold leading-6 text-gray-900"><%= gallery.name %></p>
+            <p class="text-sm leading-6 text-gray-900"><%= gallery.notes %></p>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= render "shared/pagination", collection: @galleries %>
