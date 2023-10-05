@@ -8,7 +8,7 @@ class Gallery < ApplicationRecord
 
   before_validation :format_values
 
-  scope :sorted, -> { order(name: :desc) }
+  scope :sorted, -> { order(name: :asc) }
 
   private
 
