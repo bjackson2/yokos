@@ -40,6 +40,15 @@ module Admin
       end
     end
 
+    def destroy
+      artist = Artist.find(params[:artist_id])
+      album = artist.albums.find(params[:id])
+
+      album.destroy!
+
+      redirect_to admin_artist_path(artist)
+    end
+
     private
 
     def album_params
