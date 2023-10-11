@@ -31,4 +31,6 @@
     </div>
   <% end %>
 </div>
-<%= link_to 'Delete', admin_artist_album_path(album, artist_id: artist), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn-alert' %>
+<% if album.persisted? %>
+  <%= link_to 'Delete', admin_artist_album_path(album, artist_id: artist), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn-alert' %>
+<% end %>
