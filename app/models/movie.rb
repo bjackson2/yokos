@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Movie < ApplicationRecord
+  extend FriendlyId
+
   belongs_to :artist, optional: true
   has_many :listening_session_movies
   has_many :listening_sessions, through: :listening_session_movies
@@ -11,6 +13,8 @@ class Movie < ApplicationRecord
   validates :release_year, presence: true
 
   before_validation :format_values
+
+  friendly_id :title, use: :slugged
 
   # rubocop:disable Layout/LineLength
   scope :sorted, lambda {

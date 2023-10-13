@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ListeningSession < ApplicationRecord
+  extend FriendlyId
+
   enum session_type: { remote: 'remote', party: 'party', maestros_basement: 'maestros_basement',
                        movie_night: 'movie_night' }
 
@@ -15,6 +17,8 @@ class ListeningSession < ApplicationRecord
 
   validates :session_type, presence: true
   validates :date, uniqueness: true
+
+  friendly_id :date, use: :slugged
 
   scope :sorted, -> { order(date: :desc) }
 

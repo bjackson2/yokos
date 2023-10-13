@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.0'
 gem 'devise', '~> 4.9'
+gem 'friendly_id', '~> 5.4.0'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kaminari'

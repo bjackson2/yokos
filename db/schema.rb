@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_05_162641) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_13_201539) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -54,6 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_162641) do
     t.string "file_under"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_artists_on_slug", unique: true
   end
 
   create_table "galleries", force: :cascade do |t|
@@ -61,6 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_162641) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_galleries_on_slug", unique: true
   end
 
   create_table "links", force: :cascade do |t|
@@ -100,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_162641) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_listening_sessions_on_slug", unique: true
   end
 
   create_table "movies", force: :cascade do |t|
@@ -109,7 +115,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_162641) do
     t.integer "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["artist_id"], name: "index_movies_on_artist_id"
+    t.index ["slug"], name: "index_movies_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
