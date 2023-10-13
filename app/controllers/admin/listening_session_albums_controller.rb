@@ -6,14 +6,14 @@ module Admin
     before_action :validate_user, only: %i[new create destroy]
 
     def index
-      @listening_session = ListeningSession.find(params[:listening_session_id])
+      @listening_session = ListeningSession.friendly.find(params[:listening_session_id])
       @albums = AlbumSearch.new(search: params[:q]).albums
 
       respond_to(&:turbo_stream)
     end
 
     def new
-      @listening_session = ListeningSession.find(params[:listening_session_id])
+      @listening_session = ListeningSession.friendly.find(params[:listening_session_id])
       @listening_session_album = @listening_session.listening_session_albums.new
 
       return unless params[:album_id]
@@ -22,7 +22,7 @@ module Admin
     end
 
     def create
-      @listening_session = ListeningSession.find(params[:listening_session_id])
+      @listening_session = ListeningSession.friendly.find(params[:listening_session_id])
       @listening_session_album = @listening_session
                                  .listening_session_albums
                                  .new(listening_session_album_params.except(:album))
@@ -36,7 +36,7 @@ module Admin
     end
 
     def destroy
-      listening_session = ListeningSession.find(params[:listening_session_id])
+      listening_session = ListeningSession.friendly.find(params[:listening_session_id])
       listening_session.listening_session_albums.find_by(album_id: params[:id]).destroy!
 
       redirect_to admin_listening_session_path(listening_session)

@@ -9,7 +9,7 @@ module Admin
     end
 
     def show
-      @listening_session = ListeningSession.find(params[:id])
+      @listening_session = ListeningSession.friendly.find(params[:id])
     end
 
     def new
@@ -30,11 +30,11 @@ module Admin
     end
 
     def edit
-      @listening_session = ListeningSession.find(params[:id])
+      @listening_session = ListeningSession.friendly.find(params[:id])
     end
 
     def update
-      @listening_session = ListeningSession.find(params[:id])
+      @listening_session = ListeningSession.friendly.find(params[:id])
       @listening_session.update(listening_session_params)
 
       if @listening_session.errors.any?
@@ -46,7 +46,7 @@ module Admin
     end
 
     def destroy
-      @listening_session = ListeningSession.find(params[:id])
+      @listening_session = ListeningSession.friendly.find(params[:id])
       @listening_session.destroy!
 
       flash[:notice] = 'Session deleted'

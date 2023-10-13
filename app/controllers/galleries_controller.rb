@@ -8,7 +8,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    @gallery = Gallery.find(params[:id])
+    @gallery = Gallery.friendly.find(params[:id])
   end
 
   def new
@@ -29,11 +29,11 @@ class GalleriesController < ApplicationController
   end
 
   def edit
-    @gallery = Gallery.find(params[:id])
+    @gallery = Gallery.friendly.find(params[:id])
   end
 
   def update
-    @gallery = Gallery.find(params[:id])
+    @gallery = Gallery.friendly.find(params[:id])
     @gallery.update(gallery_params[:gallery])
 
     if @gallery.errors.any?

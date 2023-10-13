@@ -5,7 +5,7 @@ module Admin
     before_action :validate_user
 
     def destroy
-      listening_session = ListeningSession.find(params[:listening_session_id])
+      listening_session = ListeningSession.friendly.find(params[:listening_session_id])
       listening_session.images.find(params[:id]).purge
 
       redirect_to admin_listening_session_path(listening_session)

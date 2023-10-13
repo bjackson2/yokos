@@ -8,7 +8,7 @@ class MoviesController < AdminController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.friendly.find(params[:id])
   end
 
   def new
@@ -28,11 +28,11 @@ class MoviesController < AdminController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
+    @movie = Movie.friendly.find(params[:id])
   end
 
   def update
-    @movie = Movie.find(params[:id])
+    @movie = Movie.friendly.find(params[:id])
     @movie.update(movie_params[:movie])
 
     if @movie.errors.any?

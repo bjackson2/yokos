@@ -5,12 +5,12 @@ module Admin
     before_action :validate_user
 
     def new
-      @artist = Artist.find(params[:artist_id])
+      @artist = Artist.friendly.find(params[:artist_id])
       @album = @artist.albums.new
     end
 
     def create
-      @artist = Artist.find(params[:artist_id])
+      @artist = Artist.friendly.find(params[:artist_id])
       @album = @artist.albums.new(album_params[:album])
       @album.save
 
@@ -23,12 +23,12 @@ module Admin
     end
 
     def edit
-      @artist = Artist.find(params[:artist_id])
+      @artist = Artist.friendly.find(params[:artist_id])
       @album = @artist.albums.find(params[:id])
     end
 
     def update
-      @artist = Artist.find(params[:artist_id])
+      @artist = Artist.friendly.find(params[:artist_id])
       @album = @artist.albums.find(params[:id])
       @album.update(album_params[:album])
 
@@ -41,7 +41,7 @@ module Admin
     end
 
     def destroy
-      artist = Artist.find(params[:artist_id])
+      artist = Artist.friendly.find(params[:artist_id])
       album = artist.albums.find(params[:id])
 
       album.destroy!
