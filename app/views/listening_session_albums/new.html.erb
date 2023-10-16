@@ -1,17 +1,17 @@
 <h1>Add Album</h1>
 
 <div class="my-12">
-  <%= form_for [:admin, @listening_session, @listening_session_album], data: { turbo: false } do |form| %>
+  <%= form_for [@listening_session, @listening_session_album], data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="col-span-full">
         <%= form.label :album, "Album", class: "form-label" %>
         <div class="mt-2">
-          <%= form.text_field :album, value: album_display_name(@listening_session_album.album), class: "form-input", autocomplete: "off", "x-on:keyup" => "fetch('/admin/listening_sessions/#{@listening_session.id}/listening_session_albums?q=' + $event.target.value, { method: 'GET' }).then(res => res.text()).then(html => Turbo.renderStreamMessage(html))" %>
+          <%= form.text_field :album, value: album_display_name(@listening_session_album.album), class: "form-input", autocomplete: "off", "x-on:keyup" => "fetch('/listening_sessions/#{@listening_session.id}/listening_session_albums?q=' + $event.target.value, { method: 'GET' }).then(res => res.text()).then(html => Turbo.renderStreamMessage(html))" %>
           <%= form.hidden_field :album_id, value: @listening_session_album.album&.id %>
         </div>
       </div>
       <div class="col-span-full">
-        Don't see an album here? Go to <%= link_to "the Artists list", admin_artists_path %> to add a new artist or album.
+        Don't see an album here? Go to <%= link_to "the Artists list", artists_path %> to add a new artist or album.
       </div>
       <div class="col-span-full">
         <%= turbo_frame_tag "album-list" %>
@@ -22,7 +22,7 @@
       <div class="col-span-full flex">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
         <div class="ml-8 mt-2">
-          <%= link_to "Cancel", admin_listening_session_path(@listening_session), class: "btn-secondary text-black hover:text-black" %>
+          <%= link_to "Cancel", listening_session_path(@listening_session), class: "btn-secondary text-black hover:text-black" %>
         </div>
       </div>
     </div>

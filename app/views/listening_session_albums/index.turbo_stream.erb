@@ -1,0 +1,9 @@
+<%= turbo_stream.update "album-list" do %>
+  <div class="col-span-full">
+    <% @albums.each do |album| %>
+      <div>
+        <%= link_to album_display_name(album), new_listening_session_listening_session_album_path(listening_session_id: @listening_session, album_id: album.id), data: { turbo_frame: "_top" } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

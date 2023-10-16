@@ -1,5 +1,5 @@
 <div class="my-12" x-data="{ showPreview: false, logoPreviewSrc: '#' }">
-  <%= form_for [:admin, artist, album], data: { turbo: false } do |form| %>
+  <%= form_for [artist, album], data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-4">
         <%= render "shared/forms/text_field", field: :title, form: form, label: "Album title" %>
@@ -26,11 +26,11 @@
       </div>
       <div class="col-span-full flex items-end">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
-        <%= link_to 'Cancel', admin_artist_path(artist), class: 'btn-secondary ml-8' %>
+        <%= link_to 'Cancel', artist_path(artist), class: 'btn-secondary ml-8' %>
       </div>
     </div>
   <% end %>
 </div>
 <% if album.persisted? %>
-  <%= link_to 'Delete', admin_artist_album_path(album, artist_id: artist), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn-alert' %>
+  <%= link_to 'Delete', artist_album_path(album, artist_id: artist), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn-alert' %>
 <% end %>

@@ -15,8 +15,8 @@
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12">
-      <%= link_to "Sessions", admin_listening_sessions_path, class: "font-semibold leading-6 text-gray-900" %>
-      <%= link_to "Artists", admin_artists_path, class: "font-semibold leading-6 text-gray-900" %>
+      <%= link_to "Sessions", listening_sessions_path, class: "font-semibold leading-6 text-gray-900" %>
+      <%= link_to "Artists", artists_path, class: "font-semibold leading-6 text-gray-900" %>
       <%= link_to "Albums", albums_path, class: "font-semibold leading-6 text-gray-900" %>
       <%= link_to "Movies", movies_path, class: "font-semibold leading-6 text-gray-900" %>
       <% if can_view_galleries? %>
@@ -53,8 +53,8 @@
       <div class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
-            <%= link_to "Sessions", admin_listening_sessions_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
-            <%= link_to "Artists", admin_artists_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
+            <%= link_to "Sessions", listening_sessions_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
+            <%= link_to "Artists", artists_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
             <%= link_to "Albums", albums_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
             <%= link_to "Movies", movies_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
             <% if can_view_galleries? %>

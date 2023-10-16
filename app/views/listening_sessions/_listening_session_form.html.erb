@@ -1,5 +1,5 @@
 <div class="my-12">
-  <%= form_for [:admin, listening_session], data: { turbo: false } do |form| %>
+  <%= form_for [listening_session], data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-4">
         <%= form.label :date, "Date", class: "form-label" %>
@@ -20,11 +20,11 @@
       </div>
       <div class="col-span-full flex items-end">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
-        <%= link_to "Cancel", listening_session.persisted? ? admin_listening_session_path(listening_session) : admin_listening_sessions_path, class: "btn-secondary ml-8" %>
+        <%= link_to "Cancel", listening_session.persisted? ? listening_session_path(listening_session) : listening_sessions_path, class: "btn-secondary ml-8" %>
       </div>
     </div>
   <% end %>
 </div>
 <% if listening_session.persisted? %>
-  <%= link_to "Delete", admin_listening_session_path(listening_session), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: "btn-alert" %>
+  <%= link_to "Delete", listening_session_path(listening_session), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: "btn-alert" %>
 <% end%>

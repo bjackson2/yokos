@@ -17,7 +17,7 @@
 
 <% if can_edit_data? %>
   <div class="my-6">
-    <%= link_to edit_admin_artist_path(@artist) do %>
+    <%= link_to edit_artist_path(@artist) do %>
       <%= button_tag "Edit Artist", class: "btn-secondary" %>
     <% end %>
   </div>
@@ -28,7 +28,7 @@
     <h2>Albums</h2>
     <% if can_edit_data? %>
       <div class="p-4 ml-4">
-        <%= link_to "+ New Album", new_admin_artist_album_path(artist_id: @artist), class: 'btn-secondary p-1' %>
+        <%= link_to "+ New Album", new_artist_album_path(artist_id: @artist), class: 'btn-secondary p-1' %>
       </div>
     <% end %>
   </div>
@@ -40,7 +40,7 @@
           <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
           <% if can_edit_data? %>
             <div class="my-4">
-              <%= link_to "Edit Album", edit_admin_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
+              <%= link_to "Edit Album", edit_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
             </div>
           <% end %>
         </div>

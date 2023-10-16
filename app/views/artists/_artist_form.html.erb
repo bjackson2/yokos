@@ -1,5 +1,5 @@
 <div class="my-12" x-data="{ showPreview: false, logoPreviewSrc: '#' }">
-  <%= form_for [:admin, artist], data: { turbo: false } do |form| %>
+  <%= form_for artist, data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-4">
         <%= render "shared/forms/text_field", field: :name, form: form, label: "Artist name" %>
@@ -22,7 +22,7 @@
       </div>
       <div class="col-span-full flex items-end">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
-        <%= link_to "Cancel", artist.persisted? ? admin_artist_path(artist) : admin_artists_path, class: 'btn-secondary ml-8' %>
+        <%= link_to "Cancel", artist.persisted? ? artist_path(artist) : artists_path, class: 'btn-secondary ml-8' %>
       </div>
     </div>
   <% end %>

@@ -1,7 +1,7 @@
 <h1>Add Movie</h1>
 
 <div class="my-12">
-  <%= form_for [:admin, @listening_session, @listening_session_movie], data: { turbo: false } do |form| %>
+  <%= form_for [@listening_session, @listening_session_movie], data: { turbo: false } do |form| %>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="col-span-full">
         <%= render "shared/forms/select_field", form: form, field: :movie_id, label: "Movie", select_options: movie_select_options %>
@@ -9,7 +9,7 @@
       <div class="col-span-full flex">
         <%= button_tag "Save", class: "btn-primary", type: "submit" %>
         <div class="ml-8 mt-2">
-          <%= link_to "Cancel", admin_listening_session_path(@listening_session), class: "btn-secondary text-black hover:text-black" %>
+          <%= link_to "Cancel", listening_session_path(@listening_session), class: "btn-secondary text-black hover:text-black" %>
         </div>
       </div>
     </div>

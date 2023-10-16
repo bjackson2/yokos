@@ -11,7 +11,7 @@
 <ul role="list" class="divide-y divide-gray-100 my-8">
   <% @albums.each do |album| %>
     <li>
-      <%= link_to admin_artist_path(album.artist) do %>
+      <%= link_to artist_path(album.artist) do %>
         <div class="w-full py-5">
           <p class="font-semibold leading-6 text-gray-900"><%= album_search_display_name(album) %></p>
         </div>

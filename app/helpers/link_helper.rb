@@ -5,17 +5,17 @@
 module LinkHelper
   def link_form_redirect_path(link)
     if link.owner.is_a?(Album)
-      admin_artist_path(link.owner.artist)
+      artist_path(link.owner.artist)
     elsif link.owner.is_a?(Artist)
-      admin_artist_path(link.owner)
+      artist_path(link.owner)
     elsif link.owner.is_a?(Movie)
       movie_path(link.owner)
     elsif link.owner.is_a?(Gallery)
       gallery_path(link.owner)
     elsif link.owner.is_a?(ListeningSession)
-      admin_listening_session_path(link.owner)
+      listening_session_path(link.owner)
     else
-      admin_artists_path
+      artists_path
     end
   end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MoviesController < AdminController
+class MoviesController < ApplicationController
   before_action :validate_user, only: %i[new create edit update]
 
   def index
