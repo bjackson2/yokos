@@ -2,7 +2,9 @@
 
 <div class="flex flex-col gap-10 pt-12 sm:flex-row">
   <% if @artist.main_image.attached? %>
-    <%= image_tag @artist.main_image, class: "w-96 flex-none rounded-2xl object-cover" %>
+    <%= link_to url_for(@artist.main_image) do %>
+      <%= image_tag @artist.main_image, class: "w-96 flex-none rounded-2xl object-cover" %>
+    <% end %>
   <% end %>
   <div class="max-w-xl flex-auto">
     <h3><%= @artist.name %></h3>
