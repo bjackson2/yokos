@@ -18,20 +18,10 @@
 
 <ul role="list" class="divide-y divide-gray-100 my-8">
   <% @artists.each do |artist| %>
-    <li class="flex justify-between gap-x-6 py-5">
+    <li>
       <%= link_to artist_path(artist) do %>
-        <div class="flex min-w-0 gap-x-4">
-          <% if artist.main_image.attached? %>
-            <%= image_tag artist.main_image, class: "h-14 w-14 flex-none rounded-full bg-gray-50" %>
-          <% end %>
-          <div class="min-w-0 flex-auto">
-            <p class="font-semibold leading-6 text-gray-900"><%= artist_display_name(artist) %></p>
-          </div>
-        </div>
-      <% end %>
-      <% if can_edit_data? %>
-        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-          <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_artist_path(artist) %></p>
+        <div class="w-full py-5">
+          <p class="font-semibold leading-6 text-gray-900"><%= artist_display_name(artist) %></p>
         </div>
       <% end %>
     </li>

@@ -3,8 +3,6 @@
 class ArtistSearch
   include ActiveModel::Model
 
-  RESULTS_PER_PAGE = 10
-
   attr_reader :page, :search
 
   def initialize(page:, search: nil)
@@ -13,7 +11,7 @@ class ArtistSearch
   end
 
   def artists
-    artist_search.sorted.page(page).per(RESULTS_PER_PAGE)
+    artist_search.sorted.page(page)
   end
 
   def artist_count
