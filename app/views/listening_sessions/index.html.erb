@@ -10,27 +10,23 @@
 
 <ul role="list" class="divide-y divide-gray-100 my-8">
   <% @listening_sessions.each do |ls| %>
-    <li class="flex justify-between gap-x-6 py-5">
+    <li>
       <%= link_to listening_session_path(ls) do %>
-        <div class="flex min-w-0 gap-x-4">
-          <% if ls.images.attached? %>
-            <%= image_tag ls.main_image, class: "h-14 w-14 flex-none rounded-full bg-gray-50" %>
+        <div class="w-full py-5">
+          <p class="font-semibold leading-6 text-gray-900"><%= ls.date.present? ? ls.date.strftime("%B %-d, %Y") : "Unknown" %></p>
+          <p class="mt-1 truncate text-sm leading-5 text-gray-500"><%= ls.session_type&.humanize %></p>
+          <% if ls.theme.present? %>
+            <p class="mt-1 truncate text-sm leading-5 text-gray-500">Theme: <%= ls.theme %></p>
           <% end %>
-          <div class="min-w-0 flex-auto">
-            <p class="font-semibold leading-6 text-gray-900"><%= ls.date.present? ? ls.date.strftime("%B %-d, %Y") : "Unknown" %></p>
-            <p class="mt-1 truncate text-sm leading-5 text-gray-500"><%= ls.session_type&.humanize %></p>
-            <% if ls.theme.present? %>
-              <p class="mt-1 truncate text-sm leading-5 text-gray-500">Theme: <%= ls.theme %></p>
-            <% end %>
-            <% if ls.notes.present? %>
-              <p class="mt-1 text-sm leading-5 text-gray-500 max-w-xl">Notes: <span class="text-xs"><%= ls.notes %></span></p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <% if can_edit_data? %>
-        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-          <p class="leading-6 text-gray-900"><%= link_to "Edit", edit_listening_session_path(ls) %></p>
+          <% if ls.albums.any? %>
+            <p class="mt-1 truncate text-sm leading-5 text-gray-500">Albums: <%= ls.albums.map { |album| album_display_name(album) }.join(", ") %></p>
+          <% end %>
+          <% if ls.movies.any? %>
+            <p class="mt-1 truncate text-sm leading-5 text-gray-500">Movies: <%= ls.movies.map { |movie| movie.title }.join(", ") %></p>
+          <% end %>
+          <% if ls.notes.present? %>
+            <p class="mt-1 text-sm leading-5 text-gray-500 max-w-xl">Notes: <span class="text-xs"><%= ls.notes %></span></p>
+          <% end %>
         </div>
       <% end %>
     </li>
