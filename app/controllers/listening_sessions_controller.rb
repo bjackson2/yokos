@@ -4,7 +4,12 @@ class ListeningSessionsController < ApplicationController
   before_action :validate_user, only: %i[new create edit update]
 
   def index
-    @listening_sessions = ListeningSession.sorted
+    @listening_sessions = ListeningSession
+                          .joins(:albums, :movies)
+                          .includes(:albums, :movies)
+                          .sorted
+                          .page(params[:page])
+                          .per(15)
   end
 
   def show
