@@ -5,10 +5,11 @@ class ListeningSessionsController < ApplicationController
 
   def index
     @listening_sessions = ListeningSession
-                          .joins(:albums, :movies)
+                          .left_outer_joins(:albums, :movies)
                           .includes(:albums, :movies)
                           .sorted
-                          .page(params[:page])
+                          .distinct
+                          .page(params[:page] || 1)
                           .per(15)
   end
 
