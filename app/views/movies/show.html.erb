@@ -13,6 +13,14 @@
     <% if @movie.artist.present? %>
       <p class="text-base leading-7 text-gray-600">Artist: <%= link_to @movie.artist.name, artist_path(@movie.artist) %></p>
     <% end %>
+    <% if @movie.listening_sessions.any? %>
+      <div class="my-2">
+        <h3>Sessions</h3>
+        <% @movie.listening_sessions.each do |listening_session| %>
+          <p><%= link_to listening_session.date.strftime("%B %-d, %Y"), listening_session_path(listening_session) %></p>
+        <% end %>
+      </div>
+    <% end %>
     <div class="my-2">
       <%= render "shared/links", owner: @movie %>
     </div>
