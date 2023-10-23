@@ -35,36 +35,38 @@
     <% end %>
   </div>
 
-  <% @artist.albums.chronological.each do |album| %>
-    <div class="flex flex-col gap-10 sm:flex-row mb-16">
-      <% if album.main_image.attached? %>
-        <div>
-          <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
-          <% if can_edit_data? %>
-            <div class="my-4">
-              <%= link_to "Edit Album", edit_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-      <div class="max-w-xl flex-auto">
-        <h3><%= album.title %></h3>
-        <% if album.file_under.present? %>
-          <p class="text-base leading-7 text-gray-600">File under: <%= album.file_under %></p>
-        <% end %>
-        <p class="text-base leading-7 text-gray-600">Release date: <%= album.release_date.strftime("%B %-d, %Y") %></p>
-        <% if album.listening_sessions.any? %>
-          <div class="my-2">
-            <h3>Sessions</h3>
-            <% album.listening_sessions.each do |listening_session| %>
-              <p><%= link_to listening_session.date.strftime("%B %-d, %Y"), listening_session_path(listening_session) %> - picked by <%= listening_session.listening_session_albums.where(album: album).first.yokos_member.name %></p>
+  <ul role="list" class="divide-y divide-gray-200 lg:divide-none">
+    <% @artist.albums.chronological.each do |album| %>
+      <li class="flex flex-col gap-10 sm:flex-row py-8">
+        <% if album.main_image.attached? %>
+          <div>
+            <%= image_tag album.main_image, class: "w-52 flex-none rounded-2xl object-cover" %>
+            <% if can_edit_data? %>
+              <div class="my-4">
+                <%= link_to "Edit Album", edit_artist_album_path(@artist, album), class: 'btn-secondary p-1' %>
+              </div>
             <% end %>
           </div>
         <% end %>
-        <div class="my-2">
-          <%= render "shared/links", owner: album %>
+        <div class="max-w-xl flex-auto">
+          <h3><%= album.title %></h3>
+          <% if album.file_under.present? %>
+            <p class="text-base leading-7 text-gray-600">File under: <%= album.file_under %></p>
+          <% end %>
+          <p class="text-base leading-7 text-gray-600">Release date: <%= album.release_date.strftime("%B %-d, %Y") %></p>
+          <% if album.listening_sessions.any? %>
+            <div class="my-2">
+              <h3>Sessions</h3>
+              <% album.listening_sessions.each do |listening_session| %>
+                <p><%= link_to listening_session.date.strftime("%B %-d, %Y"), listening_session_path(listening_session) %> - picked by <%= listening_session.listening_session_albums.where(album: album).first.yokos_member.name %></p>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="my-2">
+            <%= render "shared/links", owner: album %>
+          </div>
         </div>
-      </div>
-    </div>
-  <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
