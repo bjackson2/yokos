@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     resources :listening_session_albums
     resources :listening_session_movies
   end
+  resources :members, only: %i(index show)
   resources :movies
 end

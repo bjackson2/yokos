@@ -1,0 +1,11 @@
+<h1><%= @yokos_member.name %></h1>
+
+<h3 class="my-6">Picks</h3>
+
+<div>
+  <% @yokos_member.listening_session_albums.date_sorted.each do |listening_session_album| %>
+    <div class="my-4">
+      <%= link_to "#{album_display_name(listening_session_album.album)} | #{listening_session_album.listening_session.date.strftime("%B %-d, %Y")}", listening_session_path(listening_session_album.listening_session) %>
+    </div>
+  <% end %>
+</div>

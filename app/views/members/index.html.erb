@@ -1,0 +1,9 @@
+<h1>Members</h1>
+
+<div class="my-8">
+  <% @yokos_members.each do |member| %>
+    <div class="my-4">
+      <%= link_to member.name, member_path(member) %>
+    </div>
+  <% end %>
+</div>

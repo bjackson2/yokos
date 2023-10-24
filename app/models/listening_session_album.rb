@@ -7,4 +7,6 @@ class ListeningSessionAlbum < ApplicationRecord
 
   validates :album, presence: true
   validates :listening_session, presence: true
+
+  scope :date_sorted, -> { joins(:listening_session).order('listening_sessions.date desc') }
 end
