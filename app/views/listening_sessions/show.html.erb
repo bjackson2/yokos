@@ -114,9 +114,7 @@
       <% end %>
     </div>
     <% if @listening_session.images.attached? %>
-      <div class="col-span-full flex">
-        <%= render "shared/image_grid/image_grid", images: @listening_session.images %>
-      </div>
+      <%= render "shared/image_grid/image_grid", images: @listening_session.images %>
     <% end %>
   <div>
 <% end %>
